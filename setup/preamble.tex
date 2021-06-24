@@ -31,6 +31,7 @@
 \usepackage{enumitem}
 \usepackage{subcaption} 
 \usepackage{todonotes}
+\newcommand{\suggestion}[1]{\todo[inline, color=green!40]{#1}} % Custom todo-note
 \usepackage{emptypage}  % removes page numbering on empty pages
 
 
@@ -49,7 +50,7 @@
     natbib=true
     ]{biblatex}
 
-    \addbibresource{references.bib}
+\addbibresource{references.bib}
 
 % =============================================================================    
 % Hyper references

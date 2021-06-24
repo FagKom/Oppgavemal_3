@@ -28,36 +28,34 @@
 % =============================================================================
 \frontmatter % to make page numbering appear in roman numerals
 
-\input{2_frontmatter/title}
-\input{2_frontmatter/abstract}
-\input{2_frontmatter/preface}
-\input{2_frontmatter/tableofcontents}
+
+\input{tex/frontmatter/titlepage.tex}
+\input{tex/frontmatter/abstract.tex}
+\input{tex/frontmatter/sammendrag.tex}
+\input{tex/frontmatter/preface.tex}
+
+\cleardoublepage                            % for 'contents' to have right page number in toc
+\setcounter{tocdepth}{2}                    % to adjust if chapters, sections, subsections, etc. should show
+\addcontentsline{toc}{chapter}{Contents}    % add "Contents" to toc
+\tableofcontents          
+
 
 % =============================================================================
 % Part 3 - Mainmatter
 % =============================================================================
 \mainmatter % makes page numbering appear in arabic numerals again
 
-\input{3_mainmatter/introduction}
-\input{3_mainmatter/nameofch1}
-\input{3_mainmatter/nameofch2}
-\input{3_mainmatter/nameofch3}  
+\input{tex/chapters/introduction.tex}
+\input{tex/chapters/chapter1.tex}
 
-% =============================================================================
-% Part 4 - Appendix
-% =============================================================================
-\appendix % makes chapter numbering appear in uppercase letters
 
-\input{4_appendix/appendixa}
-\input{4_appendix/appendixb}
 
 % =============================================================================
 % Part 5 - Backmatter
 % =============================================================================
 \backmatter
 
-%\input{5_backmatter/symbolsandabbrevs}
-
-\printbibliography
+\input{tex/backmatter/appendix.tex}
+\input{tex/backmatter/bibliography.tex}
 
 \end{document}
