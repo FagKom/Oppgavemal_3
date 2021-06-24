@@ -1,0 +1,196 @@
+% =============================================================================
+% Language, punctuation and fonts
+% =============================================================================
+\usepackage[utf8]{inputenc} % inputs
+\usepackage[english]{babel} % english language, e.e. \chapter gives "chapter 1" 
+\usepackage{csquotes}       % use \textquotes{} for proper "" in text
+
+% =============================================================================
+% Page color
+% =============================================================================
+% use this to generate grey pages to work in poorly lit rooms
+%\usepackage{xcolor}
+%    \pagecolor[rgb]{0.5, 0.5, 0.5}
+%    \color[rgb]{1, 1, 1}
+
+% =============================================================================
+% Math
+% =============================================================================
+% Math needs to be loaded before amsthm, so QED can hook into align*
+\usepackage{amssymb, mathrsfs, mathtools}   % mathematical symbols, e.g. \varnothing
+\usepackage{amsthm}                         % more stuff
+\usepackage{tikz}                           % drawings
+\usepackage{tikz-cd}                        % easy commutative diagrams
+
+% =============================================================================
+% Misc
+% =============================================================================
+\usepackage{lipsum}
+\usepackage{fancyhdr}   % creates fancy headers and footers
+\usepackage{appendix}
+\usepackage{enumitem}
+\usepackage{subcaption} 
+\usepackage{todonotes}
+\usepackage{emptypage}  % removes page numbering on empty pages
+
+
+% =============================================================================
+% Bibliography
+% =============================================================================
+
+\usepackage[
+    style=numeric, 
+    sorting=nyt, 
+    giveninits=true, 
+    eprint=false, 
+    url=false, 
+    doi=false,
+    isbn=false,
+    natbib=true
+    ]{biblatex}
+
+    \addbibresource{references.bib}
+
+% =============================================================================    
+% Hyper references
+% =============================================================================
+
+\usepackage[
+    bookmarks=true % adds a navigation menu usually shown in a left panel of the pdf-reader
+    ]{hyperref}
+    
+    \hypersetup{
+        colorlinks = true,
+        %citecolor=green,
+        %filecolor=black,
+        %linkcolor=black,
+        %urlcolor=purple
+    }
+    
+% =============================================================================    
+% References % must be after hyperref
+% =============================================================================
+%Converts the hyperlink "(3.4)" into "eq. (3.4)". 
+\usepackage[
+    %nameinlink, % makes the whole reference clickable
+    %noabbrev    % makes " eq. (3.4)" into "equation (3.4)")
+    ]{cleveref}
+
+    % The format is:
+    %\crefname{type}{singular}{plural}
+    %\Crefname{type}{singular}{plural} % this is for capitalized references
+    
+    \crefname{mydef}{definition}{definitions}
+    \Crefname{mydef}{Definition}{Definitions}
+    
+    \crefname{ex}{example}{examples}
+    \Crefname{ex}{examples}{Examples}
+    
+    \crefname{prop}{proposition}{propositions}
+    \Crefname{prop}{Proposition}{Propositions}
+    
+    \crefname{lemma}{lemma}{lemmas}
+    \Crefname{lemma}{Lemma}{Lemmas}
+    
+    \crefname{thm}{theorem}{theorems}
+    \Crefname{thm}{Theorem}{Theorems}
+    
+    \crefname{cor}{corollary}{corollaries}
+    \Crefname{cor}{Corollary}{Corollaries}
+    
+    \crefname{remark}{remark}{remarks}
+    \Crefname{remark}{Remark}{Remarks}
+        
+    \crefname{myquestion}{question}{questions}
+    \Crefname{myquestion}{Question}{Questions}
+    
+% =============================================================================
+% Theorems, definitions, lemma and stuff % must be after cleverref
+% =============================================================================
+% Note that we use the same counter for definitions, theorems, lemmas, propositions and corollaries
+\theoremstyle{plain}
+    \newtheorem{thm}{Theorem}[chapter]
+    \newtheorem*{thm*}{Theorem}
+    \newtheorem{lemma}[thm]{Lemma}
+    \newtheorem{cor}[thm]{Corollary}
+    \newtheorem{prop}[thm]{Proposition}
+ 
+\theoremstyle{definition}
+    \newtheorem{ex}[thm]{Example}
+    \newtheorem{mydef}[thm]{Definition}
+    \newtheorem{remark}[thm]{Remark}
+    \newtheorem*{remark*}{Remark}
+    \newtheorem{constr}[thm]{Construction}
+
+% =============================================================================
+% Plain style indents
+% =============================================================================
+% Fixes indents for the plain style, makes it cursive. E.g.: theorems
+\makeatletter
+\def\th@plain{
+   \itshape
+    \thm@headfont{\scshape}
+    \let\thm@indent\noindent
+}
+\makeatother
+
+% =============================================================================
+% Definition style indents
+% =============================================================================
+% Fixes indents for the definition style, makes only the header cursive
+\makeatletter
+\def\th@definition{
+    \thm@headfont{\scshape}
+    \let\thm@indent\noindent
+}
+\makeatother
+
+% =============================================================================
+% Proof style indents
+% ============================================================================= 
+% No indent in proofs
+\makeatletter
+    \renewenvironment{proof}[1][\proofname]{\par
+      \pushQED{\qed}%
+      \normalfont \topsep6\p@\@plus6\p@\relax
+      \trivlist
+      \itemindent\z@ % original has \normalparindent
+      \item[\hskip\labelsep
+            \scshape
+        #1\@addpunct{.}]\ignorespaces
+    }{%
+      \popQED\endtrivlist\@endpefalse
+    }
+\makeatother
+
+% =============================================================================
+% Leader dots in toc
+% =============================================================================
+% Creates dots leading from toc entries to relevant page number
+%\makeatletter
+%\renewcommand\@pnumwidth{1em} % <-- depending on the total number of pages
+%\patchcmd{\@tocline}
+%  {\hfil}
+%  {\leaders\hbox{\,.\,}\hfil}
+%  {}{}
+%\makeatother
+
+% =============================================================================
+% Center sections
+% =============================================================================
+% somehow, once, sections appeared uncentered, and this fixes that
+%\makeatletter
+%    \def\section{\@startsection{section}{1}%
+%      \z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+%      {\normalfont\bfseries\centering}}
+%\makeatother
+
+% =============================================================================
+% Center subsections
+% =============================================================================
+% creates a separate line for subsection titles and centers them
+%\makeatletter
+%    \def\subsection{\@startsection{subsection}{2}%
+%      \z@{.5\linespacing\@plus.7\linespacing}{.25\linespacing}%
+%      {\normalfont\bfseries\centering}}
+%\makeatother

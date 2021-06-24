@@ -1,0 +1,63 @@
+% =============================================================================
+% Thesis
+% =============================================================================
+\documentclass[
+%    b5paper,   % b5 is not an option for amsbook, but can be adjusted via geometry, see below
+    10pt,       % font size
+    twoside     % identifying left and right pages, useful for printout
+    ]{amsbook}  % could choose amsart (article), or something else, but this is chosen because of printing
+    
+% =============================================================================
+% Margins
+% =============================================================================
+\usepackage[
+    b5paper%,
+    %inner=30mm,
+    %outer=25mm,
+    %tmargin=27mm,
+    %bmargin=30mm
+    ]{geometry}
+
+\input{setup/preamble} % adds the preamble file
+\input{setup/settings} % adds the settings file
+
+\begin{document}
+
+% =============================================================================
+% Part 2 - Frontmatter
+% =============================================================================
+\frontmatter % to make page numbering appear in roman numerals
+
+\input{2_frontmatter/title}
+\input{2_frontmatter/abstract}
+\input{2_frontmatter/preface}
+\input{2_frontmatter/tableofcontents}
+
+% =============================================================================
+% Part 3 - Mainmatter
+% =============================================================================
+\mainmatter % makes page numbering appear in arabic numerals again
+
+\input{3_mainmatter/introduction}
+\input{3_mainmatter/nameofch1}
+\input{3_mainmatter/nameofch2}
+\input{3_mainmatter/nameofch3}  
+
+% =============================================================================
+% Part 4 - Appendix
+% =============================================================================
+\appendix % makes chapter numbering appear in uppercase letters
+
+\input{4_appendix/appendixa}
+\input{4_appendix/appendixb}
+
+% =============================================================================
+% Part 5 - Backmatter
+% =============================================================================
+\backmatter
+
+%\input{5_backmatter/symbolsandabbrevs}
+
+\printbibliography
+
+\end{document}
